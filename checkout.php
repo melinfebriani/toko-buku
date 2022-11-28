@@ -16,7 +16,8 @@ if(isset($_POST['order_btn'])){
    $number = $_POST['number'];
    $email = mysqli_real_escape_string($conn, $_POST['email']);
    $method = mysqli_real_escape_string($conn, $_POST['method']);
-   $address = mysqli_real_escape_string($conn, 'flat no. '. $_POST['flat'].', '. $_POST['street'].', '. $_POST['city'].', '. $_POST['country'].' - '. $_POST['pin_code']);
+   $expedition = mysqli_real_escape_string($conn, $_POST['expedition']);
+   $address = mysqli_real_escape_string($conn,  $_POST['alamat'].', '. $_POST['kecamatan'].', '. $_POST['kota'].', ' . $_POST['provinsi'].', '. $_POST['kode_pos']);
    $placed_on = date('d-M-Y');
 
    $cart_total = 0;
@@ -33,7 +34,7 @@ if(isset($_POST['order_btn'])){
 
    $total_products = implode(', ',$cart_products);
 
-   $order_query = mysqli_query($conn, "SELECT * FROM `orders` WHERE name = '$name' AND number = '$number' AND email = '$email' AND method = '$method' AND address = '$address' AND total_products = '$total_products' AND total_price = '$cart_total'") or die('query failed');
+   $order_query = mysqli_query($conn, "SELECT * FROM `orders` WHERE name = '$name' AND number = '$number' AND email = '$email' AND method = '$method' AND expedition = '$expedition' AND address = '$address' AND total_products = '$total_products' AND total_price = '$cart_total'") or die('query failed');
 
    if($cart_total == 0){
       $message[] = 'your cart is empty';
@@ -41,7 +42,7 @@ if(isset($_POST['order_btn'])){
       if(mysqli_num_rows($order_query) > 0){
          $message[] = 'order already placed!'; 
       }else{
-         mysqli_query($conn, "INSERT INTO `orders`(user_id, name, number, email, method, address, total_products, total_price, placed_on) VALUES('$user_id', '$name', '$number', '$email', '$method', '$address', '$total_products', '$cart_total', '$placed_on')") or die('query failed');
+         mysqli_query($conn, "INSERT INTO `orders`(user_id, name, number, email,  method, expedition, address, total_products, total_price, placed_on) VALUES('$user_id', '$name', '$number', '$email', '$method', '$expedition' , '$address', '$total_products', '$cart_total', '$placed_on')") or die('query failed');
          $message[] = 'order placed successfully!';
          mysqli_query($conn, "DELETE FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
       }
@@ -99,52 +100,67 @@ if(isset($_POST['order_btn'])){
 <section class="checkout">
 
    <form action="" method="post">
-      <h3>place your order</h3>
+      <h3>Checkout</h3>
       <div class="flex">
          <div class="inputBox">
-            <span>your name :</span>
-            <input type="text" name="name" required placeholder="enter your name">
+            <span>Nama :</span>
+            <input type="text" name="name" required placeholder="masukkan nama anda">
          </div>
          <div class="inputBox">
-            <span>your number :</span>
-            <input type="number" name="number" required placeholder="enter your number">
+            <span>Nomor Telepon :</span>
+            <input type="number" name="number" required placeholder="masukkan nomor telpon anda">
          </div>
          <div class="inputBox">
-            <span>your email :</span>
-            <input type="email" name="email" required placeholder="enter your email">
+            <span>Email :</span>
+            <input type="email" name="email" required placeholder="emailanda@contoh.com">
          </div>
          <div class="inputBox">
-            <span>payment method :</span>
+            <span>Metode Pembayaran :</span>
             <select name="method">
-               <option value="cash on delivery">cash on delivery</option>
-               <option value="credit card">credit card</option>
-               <option value="paypal">paypal</option>
-               <option value="paytm">paytm</option>
+               <option value="BRI">BRI</option>
+               <option value="BNI">BNI</option>
             </select>
          </div>
          <div class="inputBox">
-            <span>address line 01 :</span>
-            <input type="number" min="0" name="flat" required placeholder="e.g. flat no.">
+            <span>Ekspedisi :</span>
+            <select name="expedition">
+               <option value="JNE">JNE</option>
+               <option value="SICEPAT">SICEPAT</option>
+               <option value="TIKI">TIKI</option>
+            </select>
          </div>
          <div class="inputBox">
-            <span>address line 01 :</span>
-            <input type="text" name="street" required placeholder="e.g. street name">
+            <span>Alamat :</span>
+            <input type="text" name="alamat" required placeholder="e.g. jalan abc nomor 123">
          </div>
          <div class="inputBox">
-            <span>city :</span>
-            <input type="text" name="city" required placeholder="e.g. mumbai">
+            <span>Provinsi :</span>
+            <input type="text" name="provinsi" required placeholder="e.g. Jawa Timur">
          </div>
          <div class="inputBox">
-            <span>state :</span>
-            <input type="text" name="state" required placeholder="e.g. maharashtra">
+            <span>Kota :</span>
+            <input type="text" name="kota" required placeholder="e.g. Malang">
          </div>
          <div class="inputBox">
-            <span>country :</span>
-            <input type="text" name="country" required placeholder="e.g. india">
+            <span>Kecamatan :</span>
+            <input type="text" name="kecamatan" required placeholder="e.g. Lowokwaru">
          </div>
          <div class="inputBox">
             <span>pin code :</span>
-            <input type="number" min="0" name="pin_code" required placeholder="e.g. 123456">
+            <input type="number" min="0" name="kode_pos" required placeholder="e.g. 123456">
+         </div>
+         
+         <div class="inputBox">
+            <span> 
+            Tata Cara Membayar : 
+               <ul>1.   Pembeli mengisi form order yang tersedia</ul>
+               <ul>2. Pembeli melakukan pembayaran sesuai metode pembayaran yang dipilih</ul>
+               <ul>3. Pembayaran dapat dilakukan melalui rekening berikut : <ul>  - BRI 12345678 A/N LULUK</ul>
+               <ul>  - BNI 12345678 A/N LULUK </ul></ul>
+               <ul>4. Pembeli mengirim Bukti transaksi melalui nomor whatsapp (085156077601)</ul>
+               <ul>5. Penjual akan melakukan verifikasi bukti pembayaran</ul>
+            </span>
+            
          </div>
       </div>
       <input type="submit" value="order now" class="btn" name="order_btn">
