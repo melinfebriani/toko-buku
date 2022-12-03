@@ -86,14 +86,14 @@ if(isset($_POST['order_btn'])){
             $total_price = ($fetch_cart['price'] * $fetch_cart['quantity']);
             $grand_total += $total_price;
    ?>
-   <p> <?php echo $fetch_cart['name']; ?> <span>(<?php echo '$'.$fetch_cart['price'].'/-'.' x '. $fetch_cart['quantity']; ?>)</span> </p>
+   <p> <?php echo $fetch_cart['name']; ?> <span>(<?php echo 'Rp.'.$fetch_cart['price'].' x '. $fetch_cart['quantity']; ?>)</span> </p>
    <?php
       }
    }else{
       echo '<p class="empty">your cart is empty</p>';
    }
    ?>
-   <div class="grand-total"> grand total : <span>$<?php echo $grand_total; ?>/-</span> </div>
+   <div class="grand-total"> grand total : <span>Rp.<?php echo $grand_total; ?></span> </div>
 
 </section>
 
@@ -146,7 +146,7 @@ if(isset($_POST['order_btn'])){
             <input type="text" name="kecamatan" required placeholder="e.g. Lowokwaru">
          </div>
          <div class="inputBox">
-            <span>pin code :</span>
+            <span>Kode Pos :</span>
             <input type="number" min="0" name="kode_pos" required placeholder="e.g. 123456">
          </div>
          
@@ -157,7 +157,7 @@ if(isset($_POST['order_btn'])){
                <ul>2. Pembeli melakukan pembayaran sesuai metode pembayaran yang dipilih</ul>
                <ul>3. Pembayaran dapat dilakukan melalui rekening berikut : <ul>  - BRI 12345678 A/N LULUK</ul>
                <ul>  - BNI 12345678 A/N LULUK </ul></ul>
-               <ul>4. Pembeli mengirim Bukti transaksi melalui nomor whatsapp (085156077601)</ul>
+               <ul>4. Pembeli mengirim Bukti transaksi melalui nomor whatsapp (<a href="http://wa.me/6285156077601"target="_blank">085156077601</a>)</ul>
                <ul>5. Penjual akan melakukan verifikasi bukti pembayaran</ul>
             </span>
             

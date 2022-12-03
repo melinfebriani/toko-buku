@@ -57,12 +57,9 @@ if(isset($_POST['send'])){
 <section class="contact">
 
    <form action="" method="post">
-      <h3>say something!</h3>
-      <input type="text" name="name" required placeholder="enter your name" class="box">
-      <input type="email" name="email" required placeholder="enter your email" class="box">
-      <input type="number" name="number" required placeholder="enter your number" class="box">
-      <textarea name="message" class="box" placeholder="enter your message" id="" cols="30" rows="10"></textarea>
-      <input type="submit" value="send message" name="send" class="btn">
+      <h3>Ada Pertanyaan ?</h3>
+      
+      <a href="http://wa.me/6285156077601" class="btn" target="_blank">Hubungi Kami</a>
    </form>
 
 </section>
