@@ -15,7 +15,7 @@ if(isset($_POST['update_order'])){
    $order_update_id = $_POST['order_id'];
    $update_payment = $_POST['update_payment'];
    mysqli_query($conn, "UPDATE `orders` SET payment_status = '$update_payment' WHERE id = '$order_update_id'") or die('query failed');
-   $message[] = 'payment status has been updated!';
+   $message[] = 'status pembayaran berhasil diperbarui!';
 
 }
 
@@ -48,7 +48,7 @@ if(isset($_GET['delete'])){
 
 <section class="orders">
 
-   <h1 class="title">placed orders</h1>
+   <h1 class="title">pesanan</h1>
 
    <div class="box-container">
       <?php
@@ -58,29 +58,29 @@ if(isset($_GET['delete'])){
       ?>
       <div class="box">
          <p> user id : <span><?php echo $fetch_orders['user_id']; ?></span> </p>
-         <p> placed on : <span><?php echo $fetch_orders['placed_on']; ?></span> </p>
-         <p> name : <span><?php echo $fetch_orders['name']; ?></span> </p>
-         <p> number : <span><?php echo $fetch_orders['number']; ?></span> </p>
-         <p> email : <span><?php echo $fetch_orders['email']; ?></span> </p>
-         <p> address : <span><?php echo $fetch_orders['address']; ?></span> </p>
-         <p> total products : <span><?php echo $fetch_orders['total_products']; ?></span> </p>
-         <p> total price : <span>Rp.<?php echo $fetch_orders['total_price']; ?></span> </p>
-         <p> payment method : <span><?php echo $fetch_orders['method']; ?></span> </p>
+         <p> tanggal : <span><?php echo $fetch_orders['placed_on']; ?></span> </p>
+         <p> nama : <span><?php echo $fetch_orders['name']; ?></span> </p>
+         <p> nomor : <span><?php echo $fetch_orders['number']; ?></span> </p>
+         <p class="ellipsis"> email : <span><?php echo $fetch_orders['email']; ?></span> </p>
+         <p> alamat : <span><?php echo $fetch_orders['address']; ?></span> </p>
+         <p > total produk : <span><?php echo $fetch_orders['total_products']; ?></span> </p>
+         <p> total harga : <span>Rp <?php echo $fetch_orders['total_price']; ?></span> </p>
+         <p> metode pembayaran : <span><?php echo $fetch_orders['method']; ?></span> </p>
          <form action="" method="post">
             <input type="hidden" name="order_id" value="<?php echo $fetch_orders['id']; ?>">
             <select name="update_payment">
                <option value="" selected disabled><?php echo $fetch_orders['payment_status']; ?></option>
-               <option value="pending">pending</option>
-               <option value="completed">completed</option>
+               <option value="tertunda">tertunda</option>
+               <option value="selesai">selesai</option>
             </select>
             <input type="submit" value="update" name="update_order" class="option-btn">
-            <a href="admin_orders.php?delete=<?php echo $fetch_orders['id']; ?>" onclick="return confirm('delete this order?');" class="delete-btn">delete</a>
+            <a href="admin_orders.php?delete=<?php echo $fetch_orders['id']; ?>" onclick="return confirm('hapus pesanan ini?');" class="delete-btn">hapus</a>
          </form>
       </div>
       <?php
          }
       }else{
-         echo '<p class="empty">no orders placed yet!</p>';
+         echo '<p class="empty">tidak ada pesanan!</p>';
       }
       ?>
    </div>

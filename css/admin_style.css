@@ -3,7 +3,7 @@
 :root{
    --purple:#8e44ad;
    --red:#c0392b;
-   --orange:#f39c12;
+   --orange:#DE982F;
    --black:#333;
    --white:#fff;
    --light-color:#666;
@@ -23,7 +23,7 @@
 }
 
 *::selection{
-   background-color: var(--purple);
+   background-color: var(--orange);
    color:var(--white);
 }
 
@@ -37,7 +37,7 @@
 }
 
 *::-webkit-scrollbar-thumb{
-   background-color: var(--purple);
+   background-color: var(--orange);
 }
 
 html{
@@ -121,7 +121,7 @@ section{
 
 .white-btn,
 .btn{
-   background-color: var(--purple);
+   background-color: var(--orange);
 }
 
 .option-btn{
@@ -168,7 +168,7 @@ section{
 }
 
 .header .flex .logo span{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .header .flex .navbar a{
@@ -178,7 +178,7 @@ section{
 }
 
 .header .flex .navbar a:hover{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .header .flex .icons div{
@@ -189,7 +189,7 @@ section{
 }
 
 .header .flex .icons div:hover{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .header .flex .account-box{
@@ -218,7 +218,7 @@ section{
 }
 
 .header .flex .account-box p span{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .header .flex .account-box .delete-btn{
@@ -270,7 +270,7 @@ section{
    margin-top: 1.5rem;
    padding:1.5rem;
    background-color: var(--light-bg);
-   color:var(--purple);
+   color:var(--orange);
    font-size: 2rem;
    border-radius: .5rem;
    border:var(--border);
@@ -330,6 +330,8 @@ section{
 
 .show-products .box-container .box img{
    height: 30rem;
+   width: 100%;
+   object-fit: cover;
 }
 
 .show-products .box-container .box .name{
@@ -387,7 +389,7 @@ section{
    grid-template-columns: repeat(auto-fit, 30rem);
    justify-content: center;
    gap:1.5rem;
-   max-width: 1200px;
+   max-width: 5000px;
    margin:0 auto;
    align-items: flex-start;
 }
@@ -407,7 +409,14 @@ section{
 }
 
 .orders .box-container .box p span{
-   color:var(--purple);
+   color:var(--orange);
+}
+
+.ellipsis{
+   white-space: nowrap; 
+   width: 260px; 
+   overflow: hidden;
+   text-overflow: ellipsis;
 }
 
 .orders .box-container .box form{
@@ -423,6 +432,7 @@ section{
    padding:1.2rem 1.4rem;
    font-size: 1.8rem;
    color:var(--black);
+   text-overflow: ellipsis;
 }
 
 .users .box-container{
@@ -451,7 +461,7 @@ section{
 }
 
 .users .box-container .box p span{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .users .box-container .box .delete-btn{
@@ -484,7 +494,7 @@ section{
 }
 
 .messages .box-container .box p span{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .messages .box-container .box .delete-btn{

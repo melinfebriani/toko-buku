@@ -50,14 +50,14 @@ if(isset($_POST['add_to_cart'])){
 <?php include 'header.php'; ?>
 
 <div class="heading">
-   <h3>search page</h3>
-   <p> <a href="home.php">home</a> / search </p>
+   <h3>halaman Pencarian</h3>
+   <p> <a href="home.php">home</a> / pencarian </p>
 </div>
 
 <section class="search-form">
    <form action="" method="post">
-      <input type="text" name="search" placeholder="search products..." class="box">
-      <input type="submit" name="submit" value="search" class="btn">
+      <input type="text" name="search" placeholder="cari produk disini..." class="box">
+      <input type="submit" name="submit" value="cari" class="btn">
    </form>
 </section>
 
@@ -79,15 +79,15 @@ if(isset($_POST['add_to_cart'])){
       <input type="hidden" name="product_name" value="<?php echo $fetch_product['name']; ?>">
       <input type="hidden" name="product_price" value="<?php echo $fetch_product['price']; ?>">
       <input type="hidden" name="product_image" value="<?php echo $fetch_product['image']; ?>">
-      <input type="submit" class="btn" value="add to cart" name="add_to_cart">
+      <input type="submit" class="btn" value="Tambah ke keranjang" name="add_to_cart">
    </form>
    <?php
             }
          }else{
-            echo '<p class="empty">no result found!</p>';
+            echo '<p class="empty">produk tidak ditemukan!</p>';
          }
       }else{
-         echo '<p class="empty">search something!</p>';
+         echo '<p class="empty">cari sesuatu!</p>';
       }
    ?>
    </div>

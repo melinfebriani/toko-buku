@@ -40,10 +40,10 @@ if(isset($_POST['order_btn'])){
       $message[] = 'your cart is empty';
    }else{
       if(mysqli_num_rows($order_query) > 0){
-         $message[] = 'order already placed!'; 
+         $message[] = 'pesanan sudah terpesan!'; 
       }else{
          mysqli_query($conn, "INSERT INTO `orders`(user_id, name, number, email,  method, expedition, address, total_products, total_price, placed_on) VALUES('$user_id', '$name', '$number', '$email', '$method', '$expedition' , '$address', '$total_products', '$cart_total', '$placed_on')") or die('query failed');
-         $message[] = 'order placed successfully!';
+         $message[] = 'pesanan berhasil dipesan!';
          mysqli_query($conn, "DELETE FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
       }
    }
@@ -86,14 +86,14 @@ if(isset($_POST['order_btn'])){
             $total_price = ($fetch_cart['price'] * $fetch_cart['quantity']);
             $grand_total += $total_price;
    ?>
-   <p> <?php echo $fetch_cart['name']; ?> <span>(<?php echo 'Rp.'.$fetch_cart['price'].' x '. $fetch_cart['quantity']; ?>)</span> </p>
+   <p> <?php echo $fetch_cart['name']; ?> <span>(<?php echo 'Rp '.$fetch_cart['price'].' x '. $fetch_cart['quantity']; ?>)</span> </p>
    <?php
       }
    }else{
-      echo '<p class="empty">your cart is empty</p>';
+      echo '<p class="empty">keranjang anda kosong</p>';
    }
    ?>
-   <div class="grand-total"> grand total : <span>Rp.<?php echo $grand_total; ?></span> </div>
+   <div class="grand-total"> Total : <span>Rp <?php echo $grand_total; ?></span> </div>
 
 </section>
 
@@ -163,7 +163,7 @@ if(isset($_POST['order_btn'])){
             
          </div>
       </div>
-      <input type="submit" value="order now" class="btn" name="order_btn">
+      <input type="submit" value="pesan sekarang" class="btn" name="order_btn">
    </form>
 
 </section>

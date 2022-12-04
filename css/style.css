@@ -3,7 +3,7 @@
 :root{
    --purple:#8e44ad;
    --red:#c0392b;
-   --orange:#f39c12;
+   --orange:#DE982F;
    --black:#333;
    --white:#fff;
    --light-color:#666;
@@ -23,7 +23,7 @@
 }
 
 *::selection{
-   background-color: var(--purple);
+   background-color: var(--orange);
    color:var(--white);
 }
 
@@ -37,7 +37,7 @@
 }
 
 *::-webkit-scrollbar-thumb{
-   background-color: var(--purple);
+   background-color: var(--orange);
 }
 
 html{
@@ -117,7 +117,7 @@ section{
 
 .white-btn,
 .btn{
-   background-color: var(--purple);
+   background-color: var(--orange);
 }
 
 .option-btn{
@@ -158,7 +158,7 @@ section{
 }
 
 .heading p a{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .heading p a:hover{
@@ -216,7 +216,7 @@ section{
 }
 
 .form-container form p a{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .form-container form p a:hover{
@@ -264,7 +264,7 @@ section{
 }
 
 .header .header-1 .flex .share a:hover{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .header .header-1 .flex p{
@@ -273,7 +273,7 @@ section{
 }
 
 .header .header-1 .flex p a{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .header .header-1 .flex p a:hover{
@@ -282,7 +282,7 @@ section{
 
 .header .header-2 .flex .logo{
    font-size: 2.5rem;
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .header .header-2 .flex .navbar a{
@@ -292,7 +292,7 @@ section{
 }
 
 .header .header-2 .flex .navbar a:hover{
-   color:var(--purple);
+   color:var(--orange);
    text-decoration: underline;
 }
 
@@ -304,7 +304,7 @@ section{
 }
 
 .header .header-2 .flex .icons > *:hover{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 #menu-btn{
@@ -336,7 +336,7 @@ section{
 }
 
 .header .header-2 .flex .user-box p span{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .header .header-2 .flex .user-box .delete-btn{
@@ -393,6 +393,8 @@ section{
 
 .products .box-container .box .image{
    height: 30rem;
+   width: 100%;
+   object-fit: cover;
 }
 
 .products .box-container .box .name{
@@ -434,6 +436,7 @@ section{
 
 .about .flex .image img{
    width: 100%;
+   
 }
 
 .about .flex .content{
@@ -665,6 +668,9 @@ section{
 
 .shopping-cart .box-container .box img{
    height: 30rem;
+   width: 100%;
+   object-fit: cover;
+   
 }
 
 .shopping-cart .box-container .box .name{
@@ -836,7 +842,7 @@ section{
 }
 
 .placed-orders .box-container .box p span{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .search-form form{
@@ -898,12 +904,12 @@ section{
 
 .footer .box-container .box p i,
 .footer .box-container .box a i{
-   color:var(--purple);
+   color:var(--orange);
    padding-right: .5rem;
 }
 
 .footer .box-container .box a:hover{
-   color:var(--purple);
+   color:var(--orange);
    text-decoration: underline;
 }
 
@@ -917,7 +923,7 @@ section{
 }
 
 .footer .credit span{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 
