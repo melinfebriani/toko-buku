@@ -11,18 +11,24 @@ if(!isset($user_id)){
 }
 
 if(isset($_POST['add_to_cart'])){
-
+   $product_id = $_POST['product_id'];
    $product_name = $_POST['product_name'];
    $product_price = $_POST['product_price'];
    $product_image = $_POST['product_image'];
    $product_quantity = $_POST['product_quantity'];
 
-   $check_cart_numbers = mysqli_query($conn, "SELECT * FROM `cart` WHERE name = '$product_name' AND user_id = '$user_id'") or die('query failed');
+   $check_cart_numbers = mysqli_query($conn, "SELECT * FROM `cart` WHERE book_title = '$product_name' AND user_id = '$user_id'") or die('query failed');
 
    if(mysqli_num_rows($check_cart_numbers) > 0){
-      $message[] = 'produk sudah ditambahkan!';
+      $message[] = 'produk sudah ada di keranjang!';
    }else{
-      mysqli_query($conn, "INSERT INTO `cart`(user_id, name, price, quantity, image) VALUES('$user_id', '$product_name', '$product_price', '$product_quantity', '$product_image')") or die('query failed');
+      mysqli_query($conn, "INSERT INTO `cart`(user_id, book_title, price, quantity, image) VALUES('$user_id', '$product_name', '$product_price', '$product_quantity', '$product_image')") or die('query failed');
+
+      $select_cart = mysqli_query($conn, "SELECT * FROM `cart` WHERE book_title = '$product_name' AND user_id = '$user_id'");
+
+      $fetch_cart = mysqli_fetch_assoc($select_cart);
+      $cart_id = $fetch_cart['cart_id'];
+      mysqli_query($conn, "INSERT INTO `cart_has_books`(cart_id, user_id) VALUES ('$cart_id', '$user_id')");
       $message[] = 'produk berhasil ditambahkan ke keranjang!';
    }
 
@@ -61,21 +67,64 @@ if(isset($_POST['add_to_cart'])){
 
 <section class="products">
 
-   <h1 class="title">daftar produk</h1>
+   <h1 class="title">Rekomendasi Buku</h1>
 
    <div class="box-container">
 
       <?php  
-         $select_products = mysqli_query($conn, "SELECT * FROM `products` ") or die('query failed');
+         $select_users = mysqli_query($conn, "SELECT * FROM `profile` WHERE user_id = '$user_id'");
+         $fetch_users = mysqli_fetch_assoc($select_users);
+         $genre = $fetch_users['favorite_genre'];
+
+         $select_products = mysqli_query($conn, "SELECT * FROM `books` WHERE genre LIKE '%{$genre}%' limit 3") or die('query failed');
          if(mysqli_num_rows($select_products) > 0){
             while($fetch_products = mysqli_fetch_assoc($select_products)){
       ?>
      <form action="" method="post" class="box">
       <img class="image" src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
-      <div class="name"><?php echo $fetch_products['name']; ?></div>
+      <div class="name"><?php echo $fetch_products['book_title']; ?></div>
+      <div class="name">Penulis : <?php echo $fetch_products['author']; ?></div>
+      <div class="name">Genre : <?php echo $fetch_products['genre']; ?></div>
       <div class="price">Rp <?php echo $fetch_products['price']; ?></div>
       <input type="number" min="1" name="product_quantity" value="1" class="qty">
-      <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
+      <input type="hidden" name="product_id" value="<?php echo $fetch_products['book_id']; ?>">
+      <input type="hidden" name="product_name" value="<?php echo $fetch_products['book_title']; ?>">
+      <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
+      <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
+      <input type="submit" value="Tambah ke keranjang" name="add_to_cart" class="btn">
+     </form>
+      <?php
+         }
+      }else{
+         echo '<p class="empty">tidak ada rekomendasi!</p>';
+      }
+      ?>
+   </div>
+
+   
+
+</section>
+
+<section class="products">
+
+   <h1 class="title">daftar produk</h1>
+
+   <div class="box-container">
+
+      <?php  
+         $select_products = mysqli_query($conn, "SELECT * FROM `books` ") or die('query failed');
+         if(mysqli_num_rows($select_products) > 0){
+            while($fetch_products = mysqli_fetch_assoc($select_products)){
+      ?>
+     <form action="" method="post" class="box">
+      <img class="image" src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
+      <div class="name"><?php echo $fetch_products['book_title']; ?></div>
+      <div class="name">Penulis : <?php echo $fetch_products['author']; ?></div>
+      <div class="name">Genre : <?php echo $fetch_products['genre']; ?></div>
+      <div class="price">Rp <?php echo $fetch_products['price']; ?></div>
+      <input type="number" min="1" name="product_quantity" value="1" class="qty">
+      <input type="hidden" name="product_id" value="<?php echo $fetch_products['book_id']; ?>">
+      <input type="hidden" name="product_name" value="<?php echo $fetch_products['book_title']; ?>">
       <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
       <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
       <input type="submit" value="Tambah ke keranjang" name="add_to_cart" class="btn">

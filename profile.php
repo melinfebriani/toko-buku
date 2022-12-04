@@ -12,14 +12,30 @@ if(!isset($user_id)){
 
 if(isset($_POST['update'])){
 
-    $upt_name = $_POST['name'];
-    $upt_email = $_POST['email'];
-    $upt_address = $_POST['address'];
-    $upt_number = $_POST['number'];
-    $upt_dateOfBirth = $_POST['dateOfBirth'];
-    $upt_favGenre = $_POST['favoriteGenre'];
+    $upt_name = mysqli_real_escape_string($conn, $_POST['name']);
+    $upt_email = mysqli_real_escape_string($conn, $_POST['email']);
+    $upt_address = mysqli_real_escape_string($conn, $_POST['address']);
+    $upt_number = mysqli_real_escape_string($conn, $_POST['number']);
+    $upt_dateOfBirth = mysqli_real_escape_string($conn, $_POST['dateOfBirth']);
+    $upt_favGenre = mysqli_real_escape_string($conn, $_POST['favoriteGenre']);
  
-    mysqli_query($conn, "UPDATE `users` SET name = '$upt_name', email = '$upt_email' WHERE id = '$user_id'; UPDATE 'profile' SET address = '$upt_address', number = '$upt_number', date_of_birth = '$upt_dateOfBirth', favorite_genre = '$upt_favGenre' WHERE user_id = '$user_id'") or die('query failed');
+    mysqli_query($conn, "UPDATE `users` SET name = '$upt_name', email = '$upt_email' WHERE user_id = '$user_id'") or die('query failed');
+
+    mysqli_query($conn, "UPDATE `profile` SET address = '$upt_address', number = '$upt_number', date_of_birth = '$upt_dateOfBirth', favorite_genre = '$upt_favGenre' WHERE user_id = '$user_id'") or die('query failed');
+    
+    //update session
+    $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE user_id = '$user_id'") or die('query failed');
+
+    if(mysqli_num_rows($select_users) > 0){
+
+        $row = mysqli_fetch_assoc($select_users);
+
+        $_SESSION['user_name'] = $row['name'];
+        $_SESSION['user_email'] = $row['email'];
+    } else {
+        $message[] = 'gagal';
+    }
+
     $message[] = 'update successfully!';
     header('location:profile.php');
 }
@@ -29,10 +45,10 @@ if(isset($_POST['updatepass'])){
    $oldpass = mysqli_real_escape_string($conn, md5($_POST['password']));
    $newpass = mysqli_real_escape_string($conn, md5($_POST['newpassword']));
 
-   $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE id = '$user_id' AND password = '$oldpass'") or die('query failed');
+   $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE user_id = '$user_id' AND password = '$oldpass'") or die('query failed');
 
    if(mysqli_num_rows($select_users) > 0){
-        mysqli_query($conn, "UPDATE `users` SET password = '$newpass' WHERE id = '$user_id' ");
+        mysqli_query($conn, "UPDATE `users` SET password = '$newpass' WHERE user_id = '$user_id' ");
         $message[] = 'update successfully!';
         header('location:profile.php'); 
 
@@ -68,7 +84,7 @@ if(isset($_POST['updatepass'])){
     <section class="profile">
 
         <?php  
-            $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE id = '$user_id' ") or die('query failed');
+            $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE user_id = '$user_id' ") or die('query failed');
             $select_profile = mysqli_query($conn, "SELECT * FROM `profile` WHERE user_id = '$user_id' ") or die('query failed');
             if(mysqli_num_rows($select_users) > 0){
                 $fetch_users = mysqli_fetch_assoc($select_users);

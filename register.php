@@ -8,7 +8,7 @@ if(isset($_POST['submit'])){
    $email = mysqli_real_escape_string($conn, $_POST['email']);
    $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
    $cpass = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
-   $user_type = 'user';
+   $user_type = 'admin';
 
    $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
 
@@ -18,23 +18,17 @@ if(isset($_POST['submit'])){
       if($pass != $cpass){
          $message[] = 'konfirmasi password tidak cocok!';
       }else{
-<<<<<<< HEAD
-         mysqli_query($conn, "INSERT INTO `users`(name, email, password, user_type) VALUES('$name', '$email', '$cpass', '$user_type')") or die('query failed');
-         $message[] = 'berhasil daftar!';
-         header('location:login.php');
-=======
          mysqli_query($conn, "INSERT INTO `users`(name, email, password, user_type) VALUES('$name', '$email', '$cpass', '$user_type') ") or die('query failed');
          
-         $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email'");
+         // $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email'");
          
-         if(mysqli_num_rows($select_users) > 0){
-            $fetch_users = mysqli_fetch_assoc($select_users);
-            $user_id = $fetch_users['id'];
+         // if(mysqli_num_rows($select_users) > 0){
+         //    $fetch_users = mysqli_fetch_assoc($select_users);
+         //    $user_id = $fetch_users['id'];
 
-            mysqli_query($conn, "INSERT INTO `profile` (user_id) VALUES('$user_id')");
+         //    mysqli_query($conn, "INSERT INTO `profile` (user_id) VALUES('$user_id')");
             header('location:login.php');
-         }
->>>>>>> a80b40117b69f74f04a8ae561ca0f40fadac66a1
+         //}
       }
    }
 
@@ -75,30 +69,17 @@ if(isset($message)){
 <div class="form-container">
 
    <form action="" method="post">
-<<<<<<< HEAD
       <h3>daftar sekarang</h3>
       <input type="text" name="name" placeholder="masukkan nama anda" required class="box">
       <input type="email" name="email" placeholder="masukkan email anda" required class="box">
       <input type="password" name="password" placeholder="masukan kata sandi" required class="box">
       <input type="password" name="cpassword" placeholder="konfirmasi kata sandi" required class="box">
-=======
-      <h3>register now</h3>
-      <input type="text" name="name" placeholder="enter your name" required class="box">
-      <input type="email" name="email" placeholder="enter your email" required class="box">
-      <input type="password" name="password" placeholder="enter your password" required class="box">
-      <input type="password" name="cpassword" placeholder="confirm your password" required class="box">
->>>>>>> a80b40117b69f74f04a8ae561ca0f40fadac66a1
       <!-- <select name="user_type" class="box">
          <option value="user">user</option>
          <option value="admin">admin</option>
       </select> -->
-<<<<<<< HEAD
       <input type="submit" name="submit" value="daftar" class="btn">
       <p>sudah punya akun? <a href="login.php">masuk</a></p>
-=======
-      <input type="submit" name="submit" value="register now" class="btn">
-      <p>already have an account? <a href="login.php">login now</a></p>
->>>>>>> a80b40117b69f74f04a8ae561ca0f40fadac66a1
    </form>
 
 </div>
