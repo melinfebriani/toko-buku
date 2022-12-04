@@ -50,8 +50,13 @@ if(!isset($admin_id)){
                };
             };
          ?>
+<<<<<<< HEAD
          <h3 class=ellipsis>Rp <?php echo $total_pendings; ?></h3>
          <p>pembayaran tertunda</p>
+=======
+         <h3 class="ellipsis">Rp.<?php echo $total_pendings; ?></h3>
+         <p>total pendings</p>
+>>>>>>> a80b40117b69f74f04a8ae561ca0f40fadac66a1
       </div>
 
       <div class="box">

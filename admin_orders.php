@@ -58,6 +58,7 @@ if(isset($_GET['delete'])){
       ?>
       <div class="box">
          <p> user id : <span><?php echo $fetch_orders['user_id']; ?></span> </p>
+<<<<<<< HEAD
          <p> tanggal : <span><?php echo $fetch_orders['placed_on']; ?></span> </p>
          <p> nama : <span><?php echo $fetch_orders['name']; ?></span> </p>
          <p> nomor : <span><?php echo $fetch_orders['number']; ?></span> </p>
@@ -66,6 +67,16 @@ if(isset($_GET['delete'])){
          <p > total produk : <span><?php echo $fetch_orders['total_products']; ?></span> </p>
          <p> total harga : <span>Rp <?php echo $fetch_orders['total_price']; ?></span> </p>
          <p> metode pembayaran : <span><?php echo $fetch_orders['method']; ?></span> </p>
+=======
+         <p> placed on : <span><?php echo $fetch_orders['placed_on']; ?></span> </p>
+         <p> name : <span><?php echo $fetch_orders['name']; ?></span> </p>
+         <p> number : <span><?php echo $fetch_orders['number']; ?></span> </p>
+         <p class="ellipsis"> email : <span><?php echo $fetch_orders['email']; ?></span> </p>
+         <p> address : <span><?php echo $fetch_orders['address']; ?></span> </p>
+         <p> total products : <span><?php echo $fetch_orders['total_products']; ?></span> </p>
+         <p> total price : <span>Rp.<?php echo $fetch_orders['total_price']; ?></span> </p>
+         <p> payment method : <span><?php echo $fetch_orders['method']; ?></span> </p>
+>>>>>>> a80b40117b69f74f04a8ae561ca0f40fadac66a1
          <form action="" method="post">
             <input type="hidden" name="order_id" value="<?php echo $fetch_orders['id']; ?>">
             <select name="update_payment">

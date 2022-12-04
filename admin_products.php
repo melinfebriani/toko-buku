@@ -68,9 +68,13 @@ if(isset($_POST['update_product'])){
       }else{
          mysqli_query($conn, "UPDATE `products` SET image = '$update_image' WHERE id = '$update_p_id'") or die('query failed');
          move_uploaded_file($update_image_tmp_name, $update_folder);
+<<<<<<< HEAD
          
 
          
+=======
+         //unlink('uploaded_img/'.$update_old_image);
+>>>>>>> a80b40117b69f74f04a8ae561ca0f40fadac66a1
       }
    }
 

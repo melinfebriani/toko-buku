@@ -419,6 +419,13 @@ section{
    text-overflow: ellipsis;
 }
 
+.ellipsis {
+   white-space: nowrap; 
+   width: 250px; 
+   overflow: hidden;
+   text-overflow: ellipsis; 
+}
+
 .orders .box-container .box form{
    text-align: center;
 }
@@ -501,25 +508,6 @@ section{
    margin-top: 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* media queries  */
 
 @media (max-width:991px){
@@ -528,12 +516,26 @@ section{
       font-size: 55%;
    }
 
+   .ellipsis {
+      white-space: nowrap; 
+      width: 220px; 
+      overflow: hidden;
+      text-overflow: ellipsis; 
+   }
+
 }
 
 @media (max-width:768px){
 
    #menu-btn{
       display: inline-block;
+   }
+
+   .ellipsis {
+      white-space: nowrap; 
+      width: 200px; 
+      overflow: hidden;
+      text-overflow: ellipsis; 
    }
 
    .header .flex .navbar{
@@ -554,6 +556,13 @@ section{
       display: block;
    }
 
+   .ellipsis {
+      white-space: nowrap; 
+      width: 180px; 
+      overflow: hidden;
+      text-overflow: ellipsis; 
+   }
+
 }
 
 @media (max-width:450px){
@@ -566,4 +575,10 @@ section{
       font-size: 3rem;
    }
 
+   .ellipsis {
+      white-space: nowrap; 
+      width: 180px; 
+      overflow: hidden;
+      text-overflow: ellipsis; 
+   }
 }
