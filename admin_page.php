@@ -50,7 +50,7 @@ if(!isset($admin_id)){
                };
             };
          ?>
-         <h3>Rp.<?php echo $total_pendings; ?></h3>
+         <h3 class="ellipsis">Rp.<?php echo $total_pendings; ?></h3>
          <p>total pendings</p>
       </div>
 
