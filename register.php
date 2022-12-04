@@ -8,7 +8,7 @@ if(isset($_POST['submit'])){
    $email = mysqli_real_escape_string($conn, $_POST['email']);
    $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
    $cpass = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
-   $user_type = $_POST['user_type'];
+   $user_type = 'user';
 
    $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
 
@@ -18,9 +18,17 @@ if(isset($_POST['submit'])){
       if($pass != $cpass){
          $message[] = 'confirm password not matched!';
       }else{
-         mysqli_query($conn, "INSERT INTO `users`(name, email, password, user_type) VALUES('$name', '$email', '$cpass', '$user_type')") or die('query failed');
-         $message[] = 'registered successfully!';
-         header('location:login.php');
+         mysqli_query($conn, "INSERT INTO `users`(name, email, password, user_type) VALUES('$name', '$email', '$cpass', '$user_type') ") or die('query failed');
+         
+         $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email'");
+         
+         if(mysqli_num_rows($select_users) > 0){
+            $fetch_users = mysqli_fetch_assoc($select_users);
+            $user_id = $fetch_users['id'];
+
+            mysqli_query($conn, "INSERT INTO `profile` (user_id) VALUES('$user_id')");
+            header('location:login.php');
+         }
       }
    }
 
@@ -45,8 +53,6 @@ if(isset($_POST['submit'])){
 </head>
 <body>
 
-
-
 <?php
 if(isset($message)){
    foreach($message as $message){
@@ -68,10 +74,10 @@ if(isset($message)){
       <input type="email" name="email" placeholder="enter your email" required class="box">
       <input type="password" name="password" placeholder="enter your password" required class="box">
       <input type="password" name="cpassword" placeholder="confirm your password" required class="box">
-      <select name="user_type" class="box">
+      <!-- <select name="user_type" class="box">
          <option value="user">user</option>
          <option value="admin">admin</option>
-      </select>
+      </select> -->
       <input type="submit" name="submit" value="register now" class="btn">
       <p>already have an account? <a href="login.php">login now</a></p>
    </form>
