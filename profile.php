@@ -19,7 +19,7 @@ if(isset($_POST['update'])){
     $upt_dateOfBirth = $_POST['dateOfBirth'];
     $upt_favGenre = $_POST['favoriteGenre'];
  
-    mysqli_query($conn, "UPDATE `users` SET name = '$upt_name', email = '$upt_email', address = '$upt_address', number = '$upt_number', date_of_birth = '$upt_dateOfBirth', favorite_genre = '$upt_favGenre' WHERE id = '$user_id'") or die('query failed');
+    mysqli_query($conn, "UPDATE `users` SET name = '$upt_name', email = '$upt_email' WHERE id = '$user_id'; UPDATE 'profile' SET address = '$upt_address', number = '$upt_number', date_of_birth = '$upt_dateOfBirth', favorite_genre = '$upt_favGenre' WHERE user_id = '$user_id'") or die('query failed');
     $message[] = 'update successfully!';
     header('location:profile.php');
 }
@@ -69,8 +69,10 @@ if(isset($_POST['updatepass'])){
 
         <?php  
             $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE id = '$user_id' ") or die('query failed');
+            $select_profile = mysqli_query($conn, "SELECT * FROM `profile` WHERE user_id = '$user_id' ") or die('query failed');
             if(mysqli_num_rows($select_users) > 0){
                 $fetch_users = mysqli_fetch_assoc($select_users);
+                $fetch_profile = mysqli_fetch_assoc($select_profile);
         ?>
         <form action="" method="post">
             <h3>Profil</h3>
@@ -85,19 +87,19 @@ if(isset($_POST['updatepass'])){
                 </div>
                 <div class="inputBox">
                     <span>Alamat :</span>
-                    <input type="text" name="address" value="<?php echo $fetch_users['address']; ?>" placeholder="masukkan alamat Anda">
+                    <input type="text" name="address" value="<?php echo $fetch_profile['address']; ?>" placeholder="masukkan alamat Anda">
                 </div>
                 <div class="inputBox">
                     <span>Nomor Telepon :</span>
-                    <input type="text" name="number" value="<?php echo $fetch_users['number']; ?>" placeholder="masukkan nomor telepon Anda">
+                    <input type="text" name="number" value="<?php echo $fetch_profile['number']; ?>" placeholder="masukkan nomor telepon Anda">
                 </div>
                 <div class="inputBox">
                     <span>Tanggal Lahir :</span>
-                    <input type="date" name="dateOfBirth" value="<?php echo $fetch_users['date_of_birth']; ?>" placeholder="masukkan tanggal lahir Anda">
+                    <input type="date" name="dateOfBirth" value="<?php echo $fetch_profile['date_of_birth']; ?>" placeholder="masukkan tanggal lahir Anda">
                 </div>
                 <div class="inputBox">
                     <span>Genre Kesukaan :</span>
-                    <input type="text" name="favoriteGenre" value="<?php echo $fetch_users['favorite_genre']; ?>" placeholder="masukkan genre kesukaan Anda">
+                    <input type="text" name="favoriteGenre" value="<?php echo $fetch_profile['favorite_genre']; ?>" placeholder="masukkan genre kesukaan Anda">
                 </div>
             </div>
             <input type="submit" value="update" class="btn" name="update">
