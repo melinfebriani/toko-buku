@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap');
 
 :root{
-   --purple:#8e44ad;
+   /* --purple:#8e44ad; */
    --red:#c0392b;
-   --orange:#f39c12;
+   --orange:#DE982F;
    --black:#333;
    --white:#fff;
    --light-color:#666;
@@ -23,7 +23,7 @@
 }
 
 *::selection{
-   background-color: var(--purple);
+   background-color: var(--orange);
    color:var(--white);
 }
 
@@ -37,7 +37,7 @@
 }
 
 *::-webkit-scrollbar-thumb{
-   background-color: var(--purple);
+   background-color: var(--orange);
 }
 
 html{
@@ -117,7 +117,7 @@ section{
 
 .white-btn,
 .btn{
-   background-color: var(--purple);
+   background-color: var(--orange);
 }
 
 .option-btn{
@@ -158,7 +158,7 @@ section{
 }
 
 .heading p a{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .heading p a:hover{
@@ -216,7 +216,7 @@ section{
 }
 
 .form-container form p a{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .form-container form p a:hover{
@@ -264,7 +264,7 @@ section{
 }
 
 .header .header-1 .flex .share a:hover{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .header .header-1 .flex p{
@@ -273,7 +273,7 @@ section{
 }
 
 .header .header-1 .flex p a{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .header .header-1 .flex p a:hover{
@@ -282,7 +282,7 @@ section{
 
 .header .header-2 .flex .logo{
    font-size: 2.5rem;
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .header .header-2 .flex .navbar a{
@@ -292,7 +292,7 @@ section{
 }
 
 .header .header-2 .flex .navbar a:hover{
-   color:var(--purple);
+   color:var(--orange);
    text-decoration: underline;
 }
 
@@ -304,7 +304,7 @@ section{
 }
 
 .header .header-2 .flex .icons > *:hover{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 #menu-btn{
@@ -336,7 +336,7 @@ section{
 }
 
 .header .header-2 .flex .user-box p span{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .header .header-2 .flex .user-box .delete-btn{
@@ -838,7 +838,7 @@ section{
 }
 
 .placed-orders .box-container .box p span{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 .search-form form{
@@ -862,14 +862,60 @@ section{
    border-radius: .5rem;
 }
 
+.profile form{
+   max-width: 750px;
+   padding:2rem;
+   margin:0 auto;
+   border:var(--border);
+   background-color: var(--light-bg);
+   border-radius: .5rem;
+}
 
+.profile form h3{
+   text-align: center;
+   margin-bottom: 2rem;
+   color:var(--black);
+   text-transform: uppercase;
+   font-size: 3rem;
+}
 
+.profile form .flex{
+   /* display: flex; */
+   flex-wrap: wrap;
+   gap:1.5rem;
+}
 
+.profile form .flex .inputBox{
+   flex:1 1 40rem;
+}
 
+.profile form .flex span{
+   font-size: 2rem;
+   color:var(--black);
+}
 
+.profile form .flex select,
+.profile form .flex input{
+   border:var(--border);
+   width: 100%;
+   border-radius: .5rem;
+   width: 100%;
+   background-color: var(--white);
+   padding:1.2rem 1.4rem;
+   font-size: 1.8rem;
+   margin:1rem 0;
+}
+.profile .btn{
+   margin: 1rem auto;
+   display: block;
+}
 
-
- 
+.logout .delete-btn{
+   display: block;
+   margin: 1rem auto;
+   width: 20rem;
+   text-align: center;
+}
 
 .footer{
    background-color: var(--light-bg);
@@ -900,12 +946,12 @@ section{
 
 .footer .box-container .box p i,
 .footer .box-container .box a i{
-   color:var(--purple);
+   color:var(--orange);
    padding-right: .5rem;
 }
 
 .footer .box-container .box a:hover{
-   color:var(--purple);
+   color:var(--orange);
    text-decoration: underline;
 }
 
@@ -919,7 +965,7 @@ section{
 }
 
 .footer .credit span{
-   color:var(--purple);
+   color:var(--orange);
 }
 
 
